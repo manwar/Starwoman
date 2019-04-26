@@ -3,8 +3,8 @@ use strict;
 use Plack::Runner;
 
 sub version {
-    require Starman;
-    print "Starman $Starman::VERSION\n";
+    require Starwoman;
+    print "Starwoman $Starwoman::VERSION\n";
 }
 
 my $preload_app;
@@ -15,7 +15,7 @@ Getopt::Long::GetOptions(
     "preload-app"      => \$preload_app,
 );
 
-my @args = (server => 'Starman', env => 'deployment', version_cb => \&version);
+my @args = (server => 'Starwoman', env => 'deployment', version_cb => \&version);
 if (!$preload_app) {
     push @args, 'loader' => 'Delayed';
 }
@@ -29,7 +29,7 @@ if ($runner->{loader} eq 'Restarter') {
     warn <<WARN;
 !!
 !! Using restarter with -r or -R options is known to cause issues with process supervisor
-!! such as start_server, and it is STRONGLY discouraged to use with Starman. You have been warned.
+!! such as start_server, and it is STRONGLY discouraged to use with Starwoman. You have been warned.
 !!
 WARN
 }
@@ -41,12 +41,12 @@ __END__
 
 =head1 NAME
 
-starman - Starman launcher
+starwoman - Starwoman launcher
 
 =head1 SYNOPSIS
 
-  starman --listen :5001 --listen /tmp/starman.sock
-  starman --workers 32 --port 8080
+  starwoman --listen :5001 --listen /tmp/starwoman.sock
+  starwoman --workers 32 --port 8080
 
 =head1 OPTIONS
 
@@ -87,7 +87,7 @@ recommended to use C<--listen> instead.
 
 =item -S, --socket
 
-  -S /tmp/starman.sock
+  -S /tmp/starwoman.sock
 
 Specifies the path to UNIX domain socket to bind.
 
@@ -98,9 +98,9 @@ recommended to use C<--listen> instead.
 
 Specifies the number of worker pool. Defaults to 5.
 
-Starman by default sets up other spare server configuration based on this
+Starwoman by default sets up other spare server configuration based on this
 workers value, making sure there are B<always only> C<N> worker
-processes running. So even if there're no idle workers, Starman won't
+processes running. So even if there're no idle workers, Starwoman won't
 spawn off spare processes since that's mostly what you want to do by
 fine tuning the memory usage etc. in the production environment.
 
@@ -110,7 +110,7 @@ Specifies the number of backlog (listen queue size) of listener sockets. Default
 
 On production systems, setting a very low value can allow failover on
 frontend proxy (like nginx) to happen more quickly, if you have
-multiple Starman clusters.
+multiple Starwoman clusters.
 
 If you're doing simple benchmarks and getting connection errors,
 increasing this parameter can help avoid them. You should also
@@ -124,7 +124,7 @@ Number of the requests to process per one worker process. Defaults to 1000.
 
 =item --preload-app
 
-This option lets Starman preload the specified PSGI application in the
+This option lets Starwoman preload the specified PSGI application in the
 master parent process before preforking children. This allows memory
 savings with copy-on-write memory management. When not set (default),
 forked children loads the application in the initialization hook.
@@ -141,7 +141,7 @@ Alternatively, you can use -M command line option (plackup's common
 option) to preload the I<modules> rather than the <application>
 itself.
 
-  starman -MCatalyst -MDBIx::Class myapp.psgi
+  starwoman -MCatalyst -MDBIx::Class myapp.psgi
 
 will load the modules in the master process for memory savings with
 CoW, but the actual loading of C<myapp.psgi> is done per children,
@@ -154,13 +154,13 @@ details.
 =item --disable-keepalive
 
 Disable Keep-alive persistent connections. It is an useful workaround
-if you run Starman behind a broken frontend proxy that tries to pool
+if you run Starwoman behind a broken frontend proxy that tries to pool
 connections more than a number of backend workers (i.e. Apache
 mpm_prefork + mod_proxy).
 
 =item --keepalive-timeout
 
-The number of seconds Starman will wait for a subsequent request
+The number of seconds Starwoman will wait for a subsequent request
 before closing the connection if Keep-alive persistent connections
 are enabled. Setting this to a high value may cause performance
 problems in heavily loaded servers. The higher the timeout, the
@@ -171,7 +171,7 @@ Defaults to 1.
 
 =item --read-timeout
 
-The number of seconds Starman will wait for a request on a new connection
+The number of seconds Starwoman will wait for a request on a new connection
 before closing it. Setting this to a high value may cause performance
 problems in heavily loaded servers. The higher the timeout, the
 more backend workers will be kept occupied waiting on connections
@@ -220,18 +220,18 @@ Enable SSL on I<all> TCP sockets. This is an experimental feature.
 
 =item --disable-proctitle
 
-Disable the behavior to set proctitle to "starman (master)" and
-"starman (worker)" respectively on master and workers.
+Disable the behavior to set proctitle to "starwoman (master)" and
+"starwoman (worker)" respectively on master and workers.
 
 =back
 
-Starman passes through other options given to L<Plack::Runner>, the
+Starwoman passes through other options given to L<Plack::Runner>, the
 common backend that L<plackup> uses, so the most options explained in
 C<plackup -h> such as C<--access-log> or C<--daemonize> works fine in
-starman too.
+starwoman too.
 
-Setting the environment variable C<STARMAN_DEBUG> to 1 makes the
-Starman server running in the debug mode.
+Setting the environment variable C<STARWOMAN_DEBUG> to 1 makes the
+Starwoman server running in the debug mode.
 
 =cut
 
@@ -254,13 +254,13 @@ L<Server::Starter>, configured to send C<QUIT> signal when superdaemon
 received C<HUP>, i.e:
 
     start_server --interval 5 --port 8080 --signal-on-hup=QUIT -- \
-      starman --preload-app myapp.psgi
+      starwoman --preload-app myapp.psgi
 
 You will then send the HUP signal to C<start_server> process to
-gracefully reload the starman cluster (master and workers).
+gracefully reload the starwoman cluster (master and workers).
 
 With Server::Starter 0.12 or later, you should also be able to set
-C<--signal-on-term> to QUIT so that you can safely shutdown Starman
+C<--signal-on-term> to QUIT so that you can safely shutdown Starwoman
 first and then stop the C<start_server> daemon process as well.
 
 =item TTIN, TTOU
@@ -291,19 +291,19 @@ combine with other process daemon tools such as L<Server::Starter>.
 
 =head1 DIFFERENCES WITH PLACKUP
 
-C<starman> executable is basically the equivalent of using C<plackup>
-with C<Starman> server handler i.e. C<plackup -s Starman>, except that
-C<starman> delay loads the application with the Delayed loader by
+C<starwoman> executable is basically the equivalent of using C<plackup>
+with C<Starwoman> server handler i.e. C<plackup -s Starwoman>, except that
+C<starwoman> delay loads the application with the Delayed loader by
 default, which can be disabled with C<--preload-app>.
 
-C<starman> command also automatically sets the environment (C<-E>) to
+C<starwoman> command also automatically sets the environment (C<-E>) to
 the value of I<deployment>.
 
-You're recommended to use C<starman> unless there's a reason to stick to
+You're recommended to use C<starwoman> unless there's a reason to stick to
 C<plackup> for compatibility.
 
 =head1 SEE ALSO
 
-L<Starman>
+L<Starwoman>
 
 =cut

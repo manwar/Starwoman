@@ -1,6 +1,6 @@
-package Plack::Handler::Starman;
+package Plack::Handler::Starwoman;
 use strict;
-use Starman::Server;
+use Starwoman::Server;
 
 sub new {
     my $class = shift;
@@ -12,7 +12,7 @@ sub run {
 
     if ($ENV{SERVER_STARTER_PORT}) {
         require Net::Server::SS::PreFork;
-        @Starman::Server::ISA = qw(Net::Server::SS::PreFork); # Yikes.
+        @Starwoman::Server::ISA = qw(Net::Server::SS::PreFork); # Yikes.
     }
 
     my %nsa;
@@ -22,7 +22,7 @@ sub run {
     }
     $self->{net_server_args} = \%nsa if %nsa;
 
-    Starman::Server->new->run($app, {%$self});
+    Starwoman::Server->new->run($app, {%$self});
 }
 
 1;
@@ -31,18 +31,18 @@ __END__
 
 =head1 NAME
 
-Plack::Handler::Starman - Plack adapter for Starman
+Plack::Handler::Starwoman - Plack adapter for Starwoman
 
 =head1 SYNOPSIS
 
-  plackup -s Starman
+  plackup -s Starwoman
 
 =head1 DESCRIPTION
 
 This handler exists for the C<plackup> compatibility. Essentially,
-C<plackup -s Starman> is equivalent to C<starman --preload-app>,
-because the C<starman> executable delay loads the application by
-default. See L<starman> for more details.
+C<plackup -s Starwoman> is equivalent to C<starwoman --preload-app>,
+because the C<starwoman> executable delay loads the application by
+default. See L<starwoman> for more details.
 
 =head1 AUTHOR
 
@@ -50,7 +50,7 @@ Tatsuhiko Miyagawa
 
 =head1 SEE ALSO
 
-L<Starman>
+L<Starwoman>
 
 =cut
 

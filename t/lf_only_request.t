@@ -7,12 +7,12 @@ use Test::More;
 
 {
 
-    package Starman::Server;
+    package Starwoman::Server;
 
     # override so we can mangle the HTTP request
     use subs 'sysread';
 
-    *Starman::Server::sysread = sub {
+    *Starwoman::Server::sysread = sub {
         my $read = CORE::sysread( $_[0], $_[1], $_[2] );
         $_[1] =~ s/\r\n/\n/g;
 
@@ -22,7 +22,7 @@ use Test::More;
 }
 
 $Plack::Test::Impl = "Server";
-$ENV{PLACK_SERVER} = 'Starman';
+$ENV{PLACK_SERVER} = 'Starwoman';
 
 my $app = sub {
     my $env = shift;

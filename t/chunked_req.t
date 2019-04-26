@@ -6,7 +6,7 @@ use Test::More;
 use Digest::MD5;
 
 $Plack::Test::Impl = "Server";
-$ENV{PLACK_SERVER} = 'Starman';
+$ENV{PLACK_SERVER} = 'Starwoman';
 
 my $file = File::ShareDir::dist_dir('Plack') . "/baybridge.jpg";
 

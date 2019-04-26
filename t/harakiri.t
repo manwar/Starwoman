@@ -6,7 +6,7 @@ use Plack::Test;
 use Test::More;
 
 $Plack::Test::Impl = 'Server';
-$ENV{PLACK_SERVER} = 'Starman';
+$ENV{PLACK_SERVER} = 'Starwoman';
 
 test_psgi
     app => sub {

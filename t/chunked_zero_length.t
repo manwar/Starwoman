@@ -4,7 +4,7 @@ use HTTP::Request;
 use Test::More;
 
 $Plack::Test::Impl = "Server";
-$ENV{PLACK_SERVER} = 'Starman';
+$ENV{PLACK_SERVER} = 'Starwoman';
 
 my $app = sub {
     my $env = shift;

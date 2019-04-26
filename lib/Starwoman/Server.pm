@@ -1,4 +1,4 @@
-package Starman::Server;
+package Starwoman::Server;
 use strict;
 use base 'Net::Server::PreFork';
 
@@ -14,7 +14,7 @@ use Symbol;
 use Plack::Util;
 use Plack::TempBuffer;
 
-use constant DEBUG        => $ENV{STARMAN_DEBUG} || 0;
+use constant DEBUG        => $ENV{STARWOMAN_DEBUG} || 0;
 use constant CHUNKSIZE    => 64 * 1024;
 
 my $null_io = do { open my $io, "<", \""; $io };
@@ -122,7 +122,7 @@ sub pre_loop_hook {
         host => $port->{host},
         port => $port->{port},
         proto => $proto,
-        server_software => 'Starman',
+        server_software => 'Starwoman',
     }) if $self->{options}{server_ready};
 
     register_sig(
@@ -153,7 +153,7 @@ sub server_close {
 
 sub run_parent {
     my $self = shift;
-    $0 = "starman master " . join(" ", @{$self->{options}{argv} || []})
+    $0 = "starwoman master " . join(" ", @{$self->{options}{argv} || []})
         if $self->{options}{proctitle};
     no warnings 'redefine';
     local *Net::Server::PreFork::register_sig = sub {
@@ -173,7 +173,7 @@ sub child_init_hook {
         DEBUG && warn "[$$] Initializing the PSGI app\n";
         $self->{app} = $self->{options}->{psgi_app_builder}->();
     }
-    $0 = "starman worker " . join(" ", @{$self->{options}{argv} || []})
+    $0 = "starwoman worker " . join(" ", @{$self->{options}{argv} || []})
         if $self->{options}{proctitle};
 
 }

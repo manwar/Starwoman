@@ -3,13 +3,13 @@ use strict;
 use Test::More;
 
 {
-    package Starman::Server;
+    package Starwoman::Server;
 
     # Override the sysread method enabling it to read a stream of packages
     # from an arrayref instead of an file handle:
     use subs 'sysread';
 
-    *Starman::Server::sysread = sub {
+    *Starwoman::Server::sysread = sub {
         if (ref $_[0] eq "ARRAY") {
             die "EWOULDBLOCK\n" unless @{ $_[0] };
 
@@ -22,7 +22,7 @@ use Test::More;
 
 }
 
-use Starman::Server;
+use Starwoman::Server;
 
 my $server = {
     server => {
@@ -41,7 +41,7 @@ my $env = {
 
 my $blocked;
 eval {
-    Starman::Server::_prepare_env( $server, $env );
+    Starwoman::Server::_prepare_env( $server, $env );
     1;
 } or do {
     $blocked = 1 if $@ =~ /^EWOULDBLOCK$/;

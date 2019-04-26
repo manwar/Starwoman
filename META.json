@@ -1,7 +1,8 @@
 {
    "abstract" : "High-performance preforking PSGI/Plack web server",
    "author" : [
-      "Tatsuhiko Miyagawa <miyagawa@bulknews.net>"
+      "Tatsuhiko Miyagawa <miyagawa@bulknews.net>",
+      "Ashley Willis <awillis@synacor.com>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Dist::Zilla version 5.036, Dist::Milla version v1.0.15, CPAN::Meta::Converter version 2.150001",
@@ -12,7 +13,7 @@
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
       "version" : 2
    },
-   "name" : "Starman",
+   "name" : "Starwoman",
    "no_index" : {
       "directory" : [
          "t",
@@ -63,13 +64,13 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/miyagawa/Starman/issues"
+         "web" : "https://github.com/rabcyr/Starwoman/issues"
       },
-      "homepage" : "https://github.com/miyagawa/Starman",
+      "homepage" : "https://github.com/rabcyr/Starwoman",
       "repository" : {
          "type" : "git",
-         "url" : "https://github.com/miyagawa/Starman.git",
-         "web" : "https://github.com/miyagawa/Starman"
+         "url" : "https://github.com/rabcyr/Starwoman.git",
+         "web" : "https://github.com/rabcyr/Starwoman"
       }
    },
    "version" : "0.4014",

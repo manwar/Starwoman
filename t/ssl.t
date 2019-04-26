@@ -4,7 +4,7 @@ use Test::Requires { 'LWP::Protocol::https' => 6 };
 use Test::TCP;
 use LWP::UserAgent;
 use FindBin '$Bin';
-use Starman::Server;
+use Starwoman::Server;
 
 my $host       = 'localhost';
 my $ca_cert    = "$Bin/ssl_ca.pem";
@@ -31,7 +31,7 @@ test_tcp(
     },
     server => sub {
         my $port = shift;
-        Starman::Server->new->run(
+        Starwoman::Server->new->run(
             sub { [ 200, [], [$_[0]{'psgi.url_scheme'}] ] },
             {
                 host     => $host,

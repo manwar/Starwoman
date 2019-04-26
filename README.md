@@ -1,23 +1,23 @@
 # NAME
 
-Starman - High-performance preforking PSGI/Plack web server
+Starwoman - High-performance preforking PSGI/Plack web server
 
 # SYNOPSIS
 
     # Run app.psgi with the default settings
-    > starman
+    > starwoman
 
     # run with Server::Starter
-    > start_server --port 127.0.0.1:80 -- starman --workers 32 myapp.psgi
+    > start_server --port 127.0.0.1:80 -- starwoman --workers 32 myapp.psgi
 
     # UNIX domain sockets
-    > starman --listen /tmp/starman.sock
+    > starwoman --listen /tmp/starwoman.sock
 
-Read more options and configurations by running \`perldoc starman\` (lower-case s).
+Read more options and configurations by running \`perldoc starwoman\` (lower-case s).
 
 # DESCRIPTION
 
-Starman is a PSGI perl web server that has unique features such as:
+Starwoman is a PSGI perl web server that has unique features such as:
 
 - High Performance
 
@@ -26,7 +26,7 @@ Starman is a PSGI perl web server that has unique features such as:
 - Preforking
 
     Spawns workers preforked like most high performance UNIX servers
-    do. Starman also reaps dead children and automatically restarts the
+    do. Starwoman also reaps dead children and automatically restarts the
     worker pool.
 
 - Signals
@@ -47,7 +47,7 @@ Starman is a PSGI perl web server that has unique features such as:
 
     Preloading the applications with `--preload-app` command line option
     enables copy-on-write friendly memory management. Also, the minimum
-    memory usage Starman requires for the master process is 7MB and
+    memory usage Starwoman requires for the master process is 7MB and
     children (workers) is less than 3.0MB.
 
 - PSGI compatible
@@ -66,7 +66,7 @@ Starman is a PSGI perl web server that has unique features such as:
 
 Here's a simple benchmark using `Hello.psgi`.
 
-    -- server: Starman (workers=10)
+    -- server: Starwoman (workers=10)
     Requests per second:    6849.16 [#/sec] (mean)
     -- server: Twiggy
     Requests per second:    3911.78 [#/sec] (mean)
@@ -88,15 +88,18 @@ This benchmark was processed with `ab -c 10 -t 1 -k` on MacBook Pro
 
 # NOTES
 
-Because Starman runs as a preforking model, it is not recommended to
+Because Starwoman runs as a preforking model, it is not recommended to
 serve the requests directly from the internet, especially when slow
 requesting clients are taken into consideration. It is suggested to
-put Starman workers behind the frontend servers such as nginx, and use
+put Starwoman workers behind the frontend servers such as nginx, and use
 HTTP proxy with TCP or UNIX sockets.
 
 # AUTHOR
 
-Tatsuhiko Miyagawa <miyagawa@bulknews.net>
+Ashley Willis <awillis@synacor.com>
+
+Tatsuhiko Miyagawa <miyagawa@bulknews.net> wrote [Starman](https://metacpan.org/pod/Starman), which this module is a fork of with
+minimal modifications.
 
 Andy Grundman wrote [Catalyst::Engine::HTTP::Prefork](https://metacpan.org/pod/Catalyst::Engine::HTTP::Prefork), which this module
 is heavily based on.
@@ -107,6 +110,7 @@ Kazuho Oku wrote [Net::Server::SS::PreFork](https://metacpan.org/pod/Net::Server
 # COPYRIGHT
 
 Tatsuhiko Miyagawa, 2010-
+Ashley Willis, 2019
 
 # LICENSE
 

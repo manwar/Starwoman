@@ -6,7 +6,7 @@ use HTTP::Response;
 use Plack::Loader;
 use Test::More;
 
-$ENV{PLACK_SERVER} = 'Starman';
+$ENV{PLACK_SERVER} = 'Starwoman';
 
 test_tcp(
     client => sub {

@@ -4,7 +4,7 @@ use Test::Requires { 'LWP::Protocol::https' => 6 };
 use Test::TCP;
 use LWP::UserAgent;
 use FindBin '$Bin';
-use Starman::Server;
+use Starwoman::Server;
 
 # https://github.com/miyagawa/Starman/issues/78
 
@@ -34,7 +34,7 @@ test_tcp(
     },
     server => sub {
         my $port = shift;
-        Starman::Server->new->run(
+        Starwoman::Server->new->run(
             sub { [ 200, [], [$body] ] },
             {
                 host     => $host,
