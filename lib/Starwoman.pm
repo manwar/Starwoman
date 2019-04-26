@@ -113,7 +113,10 @@ HTTP proxy with TCP or UNIX sockets.
 
 =head1 AUTHOR
 
-Tatsuhiko Miyagawa E<lt>miyagawa@bulknews.netE<gt>
+Ashley Willis E<lt>awillis@synacor.comE<gt>
+
+Tatsuhiko Miyagawa E<lt>miyagawa@bulknews.netE<gt> wrote L<Starman>, which this module
+is a fork of with minimal modifications.
 
 Andy Grundman wrote L<Catalyst::Engine::HTTP::Prefork>, which this module
 is heavily based on.
@@ -124,6 +127,7 @@ L<Server::Starter> support to this software.
 
 =head1 COPYRIGHT
 
+Ashley Willis, 2019
 Tatsuhiko Miyagawa, 2010-
 
 =head1 LICENSE
