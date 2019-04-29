@@ -1,4 +1,5 @@
 package Plack::Handler::Starwoman;
+
 use strict;
 use Starwoman::Server;
 
