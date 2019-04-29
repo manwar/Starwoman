@@ -1,5 +1,5 @@
 package Plack::Handler::Starwoman;
-
+$Plack::Handler::Starwoman::VERSION = '0.001';
 use strict;
 use Starwoman::Server;
 
@@ -34,6 +34,10 @@ __END__
 
 Plack::Handler::Starwoman - Plack adapter for Starwoman
 
+=head1 VERSION
+
+version 0.001
+
 =head1 SYNOPSIS
 
   plackup -s Starwoman
@@ -54,5 +58,3 @@ Tatsuhiko Miyagawa
 L<Starwoman>
 
 =cut
-
-

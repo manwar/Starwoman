@@ -1,5 +1,5 @@
 package Starwoman::Server;
-
+$Starwoman::Server::VERSION = '0.001';
 use strict;
 use base 'Net::Server::PreFork';
 

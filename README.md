@@ -1,6 +1,10 @@
 # NAME
 
-Starwoman - High-performance preforking PSGI/Plack web server
+Starwoman - because Starman does the same thing over and over again expecting different results
+
+# VERSION
+
+version 0.001
 
 # SYNOPSIS
 
@@ -94,12 +98,19 @@ requesting clients are taken into consideration. It is suggested to
 put Starwoman workers behind the frontend servers such as nginx, and use
 HTTP proxy with TCP or UNIX sockets.
 
+This is a fork of Starman for one particular reason: to stop the endless
+forking of immediately dying children when app.psgi can't be loaded,
+which flooded the log file and pegged the CPU. Starman hasn't been
+maintained, hence the fork. Do not assume I will be any better about
+maintaining this, considering how much attention I give to projects I
+wrote myself.
+
 # AUTHOR
 
 Ashley Willis <awillis@synacor.com>
 
-Tatsuhiko Miyagawa <miyagawa@bulknews.net> wrote [Starman](https://metacpan.org/pod/Starman), which this module is a fork of with
-minimal modifications.
+Tatsuhiko Miyagawa <miyagawa@bulknews.net> wrote [Starman](https://metacpan.org/pod/Starman), which this module
+is a fork of with minimal modifications.
 
 Andy Grundman wrote [Catalyst::Engine::HTTP::Prefork](https://metacpan.org/pod/Catalyst::Engine::HTTP::Prefork), which this module
 is heavily based on.
@@ -109,8 +120,8 @@ Kazuho Oku wrote [Net::Server::SS::PreFork](https://metacpan.org/pod/Net::Server
 
 # COPYRIGHT
 
-Tatsuhiko Miyagawa, 2010-
 Ashley Willis, 2019
+Tatsuhiko Miyagawa, 2010-
 
 # LICENSE
 

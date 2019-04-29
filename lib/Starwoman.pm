@@ -1,5 +1,5 @@
 package Starwoman;
-
+$Starwoman::VERSION = '0.001';
 use strict;
 use 5.008_001;
 
@@ -13,6 +13,10 @@ __END__
 =head1 NAME
 
 Starwoman - because Starman does the same thing over and over again expecting different results
+
+=head1 VERSION
+
+version 0.001
 
 =head1 SYNOPSIS
 

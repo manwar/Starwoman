@@ -1,6 +1,8 @@
 Revision history for Perl extension Starwoman
 
 {{$NEXT}}
+
+0.001  2019-04-29 13:20:06 EDT
         - fork Starman to Starwoman
         - stop endless forking of immediately dying children, which floods the log file and pegs the cpu (https://github.com/miyagawa/Starman/pull/117)
 
