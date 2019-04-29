@@ -1,6 +1,8 @@
 Revision history for Perl extension Starwoman
 
 {{$NEXT}}
+        - fork Starman to Starwoman
+        - stop endless forking of immediately dying children, which floods the log file and pegs the cpu (https://github.com/miyagawa/Starman/pull/117)
 
 0.4014  2015-06-03 12:01:00 PDT
         - Treat ECONNRESET like EPIPE (i.e. ignore), not as a fatal error #114 (Tim Bunce)
