@@ -7,6 +7,7 @@ requires 'Plack', '0.9971';
 requires 'Test::TCP', '2.00';
 requires 'parent';
 requires 'perl', '5.008001';
+requires 'Try::Tiny';
 
 suggests 'Server::Starter';
 suggests 'Net::Server::SS::Prefork';
@@ -15,4 +16,5 @@ on test => sub {
     requires 'Test::More';
     requires 'Test::Requires';
     requires 'LWP::UserAgent';
+    requires 'File::ShareDir';
 };
